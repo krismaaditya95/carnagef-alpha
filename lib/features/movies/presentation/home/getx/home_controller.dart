@@ -41,6 +41,7 @@ class HomeController extends GetxController with GetTickerProviderStateMixin{
     bottomNavigationController = TabController(length: 3, vsync: this, initialIndex: 0);
     bottomNavigationController.addListener((){
       debugPrint("Home Controller => masuk ke index ${bottomNavigationController.index}");
+      selectedMenuIndex.value = bottomNavigationController.index;
     });
   }
 }

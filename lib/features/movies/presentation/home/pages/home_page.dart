@@ -43,7 +43,7 @@ class HomePage extends GetView<HomeController> {
       bottomNavigationBar: const CustomBottomNavigationBar(
         foregroundColor: Colors.white,
         backgroundColor: AppThemes.c021526,
-        selectedColor: AppThemes.c03346E,
+        selectedColor: AppThemes.c6EACDA,
       ),
       resizeToAvoidBottomInset: false,
 

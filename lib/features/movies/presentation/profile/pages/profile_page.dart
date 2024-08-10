@@ -23,6 +23,8 @@ class ProfilePage extends GetView<ProfileController> {
           actions: [
             IconButton(onPressed: () {
               controller.getAccountDetail();
+              controller.getWatchlistMovies();
+              controller.getFavoriteMovies();
             }, icon: const Icon(Icons.refresh))
           ],
         ),
@@ -34,6 +36,8 @@ class ProfilePage extends GetView<ProfileController> {
                       displacement: 8.0,
                       onRefresh: () async {
                         controller.getAccountDetail();
+                        controller.getWatchlistMovies();
+                        controller.getFavoriteMovies();
                       },
                       child: Container(
                         width: double.infinity,
@@ -80,10 +84,21 @@ class ProfilePage extends GetView<ProfileController> {
                                         margin: const EdgeInsets.only(left: 14),
                                         child: Column(
                                           mainAxisAlignment: MainAxisAlignment.center,
+                                          crossAxisAlignment: CrossAxisAlignment.start,
                                           children: [
                                             Container(
                                               margin: const EdgeInsets.only(bottom: 4),
                                               child: Text('Hi, ${controller.accountDetailResponseEntity.username.toString()}',
+                                                  style: const TextStyle(
+                                                      color: AppThemes.c03346E, fontSize: 14
+                                                  )),
+                                            ),
+
+                                            Container(
+                                              margin: const EdgeInsets.only(bottom: 4),
+                                              child: Text(
+                                                  controller.accountDetailResponseEntity.name.toString() != '' ?
+                                                  controller.accountDetailResponseEntity.name.toString() : "You haven't set your name yet",
                                                   style: const TextStyle(
                                                       color: AppThemes.c03346E, fontSize: 14
                                                   )),
@@ -181,7 +196,7 @@ class ProfilePage extends GetView<ProfileController> {
                                                     aspectRatio: 1.5,
                                                     // height: 160,
                                                     viewportFraction: 0.5,
-                                                    enableInfiniteScroll: true,
+                                                    enableInfiniteScroll: false,
                                                     onPageChanged: (index, reason){
 
                                                     },
@@ -278,7 +293,7 @@ class ProfilePage extends GetView<ProfileController> {
                                                     aspectRatio: 1.5,
                                                     // height: 160,
                                                     viewportFraction: 0.5,
-                                                    enableInfiniteScroll: true,
+                                                    enableInfiniteScroll: false,
                                                     onPageChanged: (index, reason){
 
                                                     },

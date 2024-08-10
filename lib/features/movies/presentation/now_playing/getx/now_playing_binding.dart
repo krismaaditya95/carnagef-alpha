@@ -10,6 +10,8 @@ import 'package:carnagef_alpha/features/movies/data/repository/similar_movie_rep
 import 'package:carnagef_alpha/features/movies/domain/repository/movie_detail_repository.dart';
 import 'package:carnagef_alpha/features/movies/domain/repository/now_playing_movie_repository.dart';
 import 'package:carnagef_alpha/features/movies/domain/repository/similar_movie_repository.dart';
+import 'package:carnagef_alpha/features/movies/domain/usecases/add_to_favorite_usecase.dart';
+import 'package:carnagef_alpha/features/movies/domain/usecases/add_to_watchlist_usecase.dart';
 import 'package:carnagef_alpha/features/movies/domain/usecases/download_usecase.dart';
 import 'package:carnagef_alpha/features/movies/domain/usecases/movie_detail_usecase.dart';
 import 'package:carnagef_alpha/features/movies/domain/usecases/now_playing_usecase.dart';
@@ -68,9 +70,23 @@ class NowPlayingBinding extends Bindings{
         )
     );
 
+    Get.put<AddToWatchlistUseCase>(
+        AddToWatchlistUseCase(
+          movieDetailRepository: Get.find<MovieDetailRepository>(),
+        )
+    );
+
+    Get.put<AddToFavoriteUseCase>(
+        AddToFavoriteUseCase(
+          movieDetailRepository: Get.find<MovieDetailRepository>(),
+        )
+    );
+
     Get.put(MovieDetailController(
         movieDetailUseCase: Get.find<MovieDetailUseCase>(),
-        downloadUseCase: Get.find<DownloadUseCase>()
+        downloadUseCase: Get.find<DownloadUseCase>(),
+      addToWatchlistUseCase: Get.find<AddToWatchlistUseCase>(),
+      addToFavoriteUseCase: Get.find<AddToFavoriteUseCase>(),
     ));
 
     // Bindings for similar movies ============

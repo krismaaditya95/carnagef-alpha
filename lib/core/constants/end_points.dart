@@ -15,6 +15,8 @@ class ApiEndPoints {
   static const String movieDetails = '/movie';
   static const String similarMovie = '/movie';
 
+  static const String addToWatchlist = '/account/account_id/watchlist';
+  static const String addToFavorite = '/account/account_id/favorite';
   static const String watchlistMovies = '/account/account_id/watchlist/movies';
   static const String favoriteMovies = '/account/account_id/favorite/movies';
 }

@@ -5,6 +5,10 @@ class GeneralMoviesParams{
   String? sessionId;
   String? sortBy;
   String? accessTokenAuth;
+  String? mediaType;
+  num? mediaId;
+  bool? watchlist;
+  bool? favorite;
 
   GeneralMoviesParams({
     this.movieId,
@@ -12,6 +16,10 @@ class GeneralMoviesParams{
     this.page,
     this.sessionId,
     this.sortBy,
-    this.accessTokenAuth
+    this.accessTokenAuth,
+    this.mediaType,
+    this.mediaId,
+    this.watchlist,
+    this.favorite
   });
 }

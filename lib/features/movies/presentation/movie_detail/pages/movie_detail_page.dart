@@ -128,24 +128,64 @@ class MovieDetailPage extends GetView<MovieDetailController> {
                                           ),
                                         ),
 
-                                        BorderedButton(
-                                          icon: Icons.watch_later,
-                                          text: "Add to My Watchlist",
-                                          callback: (){
-                                            Get.snackbar('Success', 'Your movie saved to watchlist',
-                                                snackPosition: SnackPosition.BOTTOM,
-                                                duration: const Duration(seconds: 3),
-                                                colorText: Colors.white
+                                        // ADD TO WATCHLIST BUTTON
+                                        Obx((){
+                                          if(controller.isWatchlistLoading.value == true){
+                                            return Container(
+                                              margin: const EdgeInsets.only(left: 14, top: 20, right: 14, bottom: 14),
+                                              width: 20,
+                                              height: 20,
+                                              child: const CircularProgressIndicator(
+                                                color: AppThemes.c6EACDA,
+                                                strokeWidth: 2.0,
+                                              ),
                                             );
-                                          },
-                                        ),
-                                        BorderedButton(
-                                          icon: Icons.favorite_border_sharp,
-                                          text: "Add to My Favorite",
-                                          callback: (){
+                                          }else{
+                                            return BorderedButton(
+                                              icon: Icons.watch_later,
+                                              text: "Add to My Watchlist",
+                                              callback: () async {
+                                                // Get.snackbar('Success', 'Your movie saved to watchlist',
+                                                //     snackPosition: SnackPosition.BOTTOM,
+                                                //     duration: const Duration(seconds: 3),
+                                                //     colorText: Colors.white
+                                                // );
+                                                await controller.addToWatchlist(
+                                                    mediaId: controller.movieDetailEntity.id,
+                                                  mediaTitle: controller.movieDetailEntity.title
+                                                );
+                                              },
+                                            );
+                                          }
+                                        }),
 
-                                          },
-                                        )
+                                        // ADD TO FAVORITE BUTTON
+                                        Obx((){
+                                          if(controller.isFavoriteLoading.value == true){
+                                            return Container(
+                                              margin: const EdgeInsets.only(left: 14, top: 20, right: 14, bottom: 14),
+                                              width: 20,
+                                              height: 20,
+                                              child: const CircularProgressIndicator(
+                                                color: AppThemes.c6EACDA,
+                                                strokeWidth: 2.0,
+                                              ),
+                                            );
+                                          }else{
+                                            return BorderedButton(
+                                              icon: Icons.favorite_border_sharp,
+                                              text: "Add to My Favorite",
+                                              callback: () async {
+                                                await controller.addToFavorite(
+                                                    mediaId: controller.movieDetailEntity.id,
+                                                  mediaTitle: controller.movieDetailEntity.title
+                                                );
+                                              },
+                                            );
+                                          }
+                                        }),
+
+
                                       ],
                                     ),
                                   ),

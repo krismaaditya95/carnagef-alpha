@@ -1,13 +1,10 @@
-
-
 import 'dart:io';
-
 import 'package:carnagef_alpha/core/constants/end_points.dart';
 import 'package:carnagef_alpha/features/movies/data/data_sources/remote/movie_detail/movie_detail_service.dart';
+import 'package:carnagef_alpha/features/movies/data/models/general_response.dart';
 import 'package:carnagef_alpha/features/movies/data/models/movie_detail_model.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:path_provider/path_provider.dart';
 
 class MovieDetailServiceImpl implements MovieDetailService{
 
@@ -74,6 +71,68 @@ class MovieDetailServiceImpl implements MovieDetailService{
         deleteOnError: true
     );
 
+  }
+
+  @override
+  Future<GeneralResponse> addToWatchlist({
+    String? mediaType,
+    num? mediaId,
+    bool? watchlist,
+    String? sessionId,
+    String? accessTokenAuth}) async {
+
+    final headers = <String, dynamic>{
+      'Authorization': 'Bearer $accessTokenAuth',
+      'Accept': 'application/json'
+    };
+
+    final params = <String, dynamic>{
+      'session_id': sessionId
+    };
+
+    final httpResponse = await _dio.post(
+        ApiEndPoints.addToWatchlist,
+        options: Options(headers: headers),
+        queryParameters: params,
+        data: {
+          "media_type": mediaType,
+          "media_id": mediaId,
+          "watchlist": watchlist,
+        }
+    );
+
+    return GeneralResponse.fromJson(httpResponse.data);
+  }
+
+  @override
+  Future<GeneralResponse> addToFavorite({
+    String? mediaType,
+    num? mediaId,
+    bool? favorite,
+    String? sessionId,
+    String? accessTokenAuth}) async {
+
+    final headers = <String, dynamic>{
+      'Authorization': 'Bearer $accessTokenAuth',
+      'Accept': 'application/json'
+    };
+
+    final params = <String, dynamic>{
+      'session_id': sessionId
+    };
+
+    final httpResponse = await _dio.post(
+        ApiEndPoints.addToFavorite,
+        options: Options(headers: headers),
+        queryParameters: params,
+        data: {
+          "media_type": mediaType,
+          "media_id": mediaId,
+          "favorite": favorite,
+        }
+    );
+
+    return GeneralResponse.fromJson(httpResponse.data);
   }
 
 }

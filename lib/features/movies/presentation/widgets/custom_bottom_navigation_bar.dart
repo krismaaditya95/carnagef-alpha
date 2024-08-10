@@ -64,14 +64,14 @@ class CustomBottomNavigationBar extends GetView<HomeController>{
                     Icon(
                       controller.menu[index].icon,
                       size: iconSize,
-                      color: controller.selectedMenuIndex == index ? selectedColor : foregroundColor
+                      color: controller.selectedMenuIndex.value == index ? selectedColor : foregroundColor
                     ),
                     const Padding(padding: EdgeInsets.only(top: 3)),
                     Text(
                       controller.menu[index].text.toString(),
                       style: TextStyle(
                         fontSize: fontSize,
-                        color: controller.selectedMenuIndex == index ? selectedColor : foregroundColor
+                        color: controller.selectedMenuIndex.value == index ? selectedColor : foregroundColor
                       ),
                     )
                   ],
