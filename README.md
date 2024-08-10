@@ -1,16 +1,24 @@
 # carnagef_alpha
 
-A new personal Flutter project by sn1ster
+A new personal Flutter project by sn1ster aka Albertus Krisma Aditya Giovanni
+Repository untuk soal Flutter Developer ENTERKOMPUTER
 
-## Getting Started
+FLUTTER
+- Clean Architecture
+- Getx Dependency Injection & State Management
+- LocalStorage using Hive
 
-This project is a starting point for a Flutter application.
+FITUR
+- Login & Logout menggunakan akun themoviedb
+- Now Playing movies
+- Popular Movies
+- Profile
+- My watchlist movies
+- My favorite movies
+- Download image to gallery/local storage
 
-A few resources to get you started if this is your first Flutter project:
+HOW TO RUN
+flutter run -t lib/main_dev.dart --flavor dev
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+TTD.
+Albertus Krisma Aditya Giovanni

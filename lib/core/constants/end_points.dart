@@ -10,6 +10,8 @@ class ApiEndPoints {
   // static const String sampleApi = '';
 
   static const String nowPlaying = '/movie/now_playing';
+  static const String popularMovies = '/movie/popular';
+
   static const String movieDetails = '/movie';
   static const String similarMovie = '/movie';
 

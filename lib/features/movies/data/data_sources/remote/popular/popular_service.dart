@@ -2,7 +2,7 @@ import 'package:carnagef_alpha/features/movies/data/models/movies_response_model
 
 abstract class PopularService{
 
-  Future<MoviesResponseModel> getPopularList({
+  Future<MoviesResponseModel> getPopularMovies({
     String? language,
     int? page,
     String? accessTokenAuth
