@@ -14,6 +14,7 @@ import 'package:carnagef_alpha/features/movies/domain/usecases/authentication/lo
 import 'package:carnagef_alpha/features/movies/domain/usecases/favorite_movies_usecase.dart';
 import 'package:carnagef_alpha/features/movies/domain/usecases/watchlist_movies_usecase.dart';
 import 'package:carnagef_alpha/features/movies/presentation/login/pages/login_page.dart';
+import 'package:carousel_slider/carousel_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -43,11 +44,15 @@ class ProfileController extends GetxController with StateMixin<AccountDetailResp
     super.onInit();
     await getAccountDetail();
     await getWatchlistMovies();
+    await getFavoriteMovies();
   }
 
   var isLogoutLoading = false.obs;
   var isFavoriteLoading = false.obs;
   var isWatchlistLoading = false.obs;
+
+  CarouselSliderController watchlistCarouselController = CarouselSliderController();
+  CarouselSliderController favoriteCarouselController = CarouselSliderController();
 
   // account detail
   final accountDetailResponseResult = Rxn<DataWrapper<AccountDetailResponseEntity>>(DataWrapper.init());
@@ -109,6 +114,7 @@ class ProfileController extends GetxController with StateMixin<AccountDetailResp
   }
 
   Future<void> getWatchlistMovies() async {
+    isWatchlistLoading.value = true;
     final sessionId = await LocalStorage.getData(AuthenticationKeys.sessionId, defaultValue: '');
 
     if(sessionId == null || sessionId.toString() == ''){
@@ -128,17 +134,45 @@ class ProfileController extends GetxController with StateMixin<AccountDetailResp
         if(watchlistMoviesResponseEntity.totalResults! >= 0 ){
           debugPrint('PROFILE Controller getWatchlistMovies|RESULT: ==> ${watchlistMoviesResponseEntity.results?.length}');
         }else{
-          if(accountDetailResponseEntity.success == false ||
-              accountDetailResponseEntity.statusCode == 3 ||
-              accountDetailResponseEntity.statusMessage.toString().toLowerCase().contains("authentication failed")){
-            Get.offAllNamed(LoginPage.routeName);
-          }
+
         }
 
       }, onError: (error){
 
       });
     }
+    isWatchlistLoading.value = false;
+  }
+
+  Future<void> getFavoriteMovies() async {
+    isFavoriteLoading.value = true;
+    final sessionId = await LocalStorage.getData(AuthenticationKeys.sessionId, defaultValue: '');
+
+    if(sessionId == null || sessionId.toString() == ''){
+      Get.offAllNamed(LoginPage.routeName);
+    }else{
+      await _favoriteMoviesUseCase.call(
+          GeneralMoviesParams(
+              language: defaultLanguage,
+              page: defaultPage,
+              sessionId: sessionId,
+              sortBy: 'created_at.asc',
+              accessTokenAuth: accessTokenAuth
+          )
+      ).then((response){
+        favoriteMoviesResponseResult(DataWrapper.success(response));
+
+        if(favoriteMoviesResponseEntity.totalResults! >= 0 ){
+          debugPrint('PROFILE Controller getFavoriteMovies|RESULT: ==> ${favoriteMoviesResponseEntity.results?.length}');
+        }else{
+
+        }
+
+      }, onError: (error){
+
+      });
+    }
+    isFavoriteLoading.value = false;
   }
 
   Future<void> logout() async {

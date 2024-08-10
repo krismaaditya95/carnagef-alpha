@@ -14,7 +14,7 @@ import 'package:get/get.dart';
 
 class ProfileBinding extends Bindings{
   @override
-  void dependencies() {
+  void dependencies() async {
 
     Get.put<PersonalService>(
         PersonalServiceImpl(dio: Get.find<Dio>())
