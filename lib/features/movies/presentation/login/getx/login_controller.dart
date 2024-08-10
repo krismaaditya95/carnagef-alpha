@@ -138,9 +138,4 @@ class LoginController extends GetxController{
     isLoginLoading.value = false;
   }
 
-  Future<void> createNewSession({String? requestToken}) async {
-
-
-  }
-
 }

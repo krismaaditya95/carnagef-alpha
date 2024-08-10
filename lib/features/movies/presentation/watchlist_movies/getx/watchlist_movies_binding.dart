@@ -1,4 +1,5 @@
 
+import 'package:carnagef_alpha/features/movies/domain/usecases/add_to_watchlist_usecase.dart';
 import 'package:carnagef_alpha/features/movies/domain/usecases/watchlist_movies_usecase.dart';
 import 'package:carnagef_alpha/features/movies/presentation/watchlist_movies/getx/watchlist_movies_controller.dart';
 import 'package:get/get.dart';
@@ -9,6 +10,7 @@ class WatchlistMoviesBinding extends Bindings{
 
     Get.put(WatchlistMoviesController(
       watchlistMoviesUseCase: Get.find<WatchlistMoviesUseCase>(),
+      addToWatchlistUseCase: Get.find<AddToWatchlistUseCase>()
     ));
   }
 }

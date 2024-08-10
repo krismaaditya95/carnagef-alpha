@@ -11,6 +11,7 @@ import 'package:carnagef_alpha/features/movies/domain/usecases/add_to_favorite_u
 import 'package:carnagef_alpha/features/movies/domain/usecases/add_to_watchlist_usecase.dart';
 import 'package:carnagef_alpha/features/movies/domain/usecases/download_usecase.dart';
 import 'package:carnagef_alpha/features/movies/domain/usecases/movie_detail_usecase.dart';
+import 'package:carnagef_alpha/features/movies/presentation/profile/getx/profile_controller.dart';
 import 'package:device_info_plus/device_info_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -43,6 +44,7 @@ class MovieDetailController extends GetxController with StateMixin<MovieDetailEn
 
   var isFavoriteLoading = false.obs;
   var isWatchlistLoading = false.obs;
+  late ProfileController profileController;
 
   final movieDetailResponseResult = Rxn<DataWrapper<MovieDetailEntity>>(DataWrapper.init());
   DataWrapper<MovieDetailEntity>? get getMovieDetailResponse => movieDetailResponseResult.value;
@@ -99,7 +101,7 @@ class MovieDetailController extends GetxController with StateMixin<MovieDetailEn
 
     await _addToWatchlistUseCase.call(
         paramRequest
-    ).then((response){
+    ).then((response) async {
 
       if(response.statusCode == 1 || response.statusCode == 12){
         addToWatchlistResponseResult(DataWrapper.success(response));
@@ -108,6 +110,8 @@ class MovieDetailController extends GetxController with StateMixin<MovieDetailEn
             duration: const Duration(seconds: 3),
             colorText: AppThemes.c021526
         );
+        profileController = Get.find<ProfileController>();
+        await profileController.getWatchlistMovies();
       }
     }, onError: (error){
 
@@ -133,7 +137,7 @@ class MovieDetailController extends GetxController with StateMixin<MovieDetailEn
 
     await _addToFavoriteUseCase.call(
         paramRequest
-    ).then((response){
+    ).then((response) async {
 
       if(response.statusCode == 1 || response.statusCode == 12){
         addToFavoriteResponseResult(DataWrapper.success(response));
@@ -142,6 +146,8 @@ class MovieDetailController extends GetxController with StateMixin<MovieDetailEn
             duration: const Duration(seconds: 3),
             colorText: AppThemes.c021526
         );
+        profileController = Get.find<ProfileController>();
+        await profileController.getFavoriteMovies();
       }
     }, onError: (error){
 

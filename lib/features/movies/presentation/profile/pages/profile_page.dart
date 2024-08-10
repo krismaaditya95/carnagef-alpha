@@ -66,7 +66,7 @@ class ProfilePage extends GetView<ProfileController> {
                                     children: [
                                       // PROFILE IMAGE
                                       Container(
-                                        margin: const EdgeInsets.only(left: 14),
+                                        margin: const EdgeInsets.only(left: 20, top: 20, bottom: 20),
                                         child: ClipRRect(
                                           borderRadius: BorderRadius.circular(50.0),
                                           child: CachedNetworkImage(
@@ -173,7 +173,7 @@ class ProfilePage extends GetView<ProfileController> {
                                             ),
                                           );
                                         }else{
-                                          if(controller.watchlistMoviesResponseEntity.totalResults! >= 0){
+                                          if(controller.watchlistMoviesResponseEntity.totalResults! > 0){
                                             return Container(
                                               margin: const EdgeInsets.only(top: 20, bottom: 14),
                                               child: CarouselSlider(
@@ -196,7 +196,7 @@ class ProfilePage extends GetView<ProfileController> {
                                                     aspectRatio: 1.5,
                                                     // height: 160,
                                                     viewportFraction: 0.5,
-                                                    enableInfiniteScroll: false,
+                                                    enableInfiniteScroll: controller.watchlistMoviesResponseEntity.totalResults! <= 2 ? false : true,
                                                     onPageChanged: (index, reason){
 
                                                     },
@@ -206,10 +206,11 @@ class ProfilePage extends GetView<ProfileController> {
                                               ),
                                             );
                                           }else{
-                                            return const Center(
-                                                child: Text('You dont have watchlist yet', style: TextStyle(
-                                                    fontSize: 16
-                                                ))
+                                            return Container(
+                                              margin: const EdgeInsets.only(top: 20, bottom: 14),
+                                              child: const Text('You dont have watchlist yet', style: TextStyle(
+                                                  fontSize: 16, color: AppThemes.c021526
+                                              )),
                                             );
                                           }
 
@@ -271,7 +272,7 @@ class ProfilePage extends GetView<ProfileController> {
                                             ),
                                           );
                                         }else{
-                                          if(controller.favoriteMoviesResponseEntity.totalResults! >= 0){
+                                          if(controller.favoriteMoviesResponseEntity.totalResults! > 0){
                                             return Container(
                                               margin: const EdgeInsets.only(top: 20, bottom: 14),
                                               child: CarouselSlider(
@@ -293,7 +294,7 @@ class ProfilePage extends GetView<ProfileController> {
                                                     aspectRatio: 1.5,
                                                     // height: 160,
                                                     viewportFraction: 0.5,
-                                                    enableInfiniteScroll: false,
+                                                    enableInfiniteScroll: controller.favoriteMoviesResponseEntity.totalResults! <= 2 ? false : true,
                                                     onPageChanged: (index, reason){
 
                                                     },
@@ -303,10 +304,11 @@ class ProfilePage extends GetView<ProfileController> {
                                               ),
                                             );
                                           }else{
-                                            return const Center(
-                                                child: Text('You dont have favorites yet', style: TextStyle(
-                                                    fontSize: 16
-                                                ))
+                                            return Container(
+                                              margin: const EdgeInsets.only(top: 20, bottom: 14),
+                                              child: const Text("You don't have favorites yet", style: TextStyle(
+                                                  fontSize: 16, color: AppThemes.c021526
+                                              )),
                                             );
                                           }
 
@@ -320,94 +322,97 @@ class ProfilePage extends GetView<ProfileController> {
                                 // ===========================
                                 // LOGOUT SECTION
                                 // ===========================
-                                Obx((){
-                                  if(controller.isLogoutLoading.value == true){
-                                    return Row(
-                                      mainAxisAlignment: MainAxisAlignment.center,
-                                      children: [
-                                        Container(
-                                          margin: const EdgeInsets.only(right: 40),
-                                          child: const CircularProgressIndicator(
-                                            color: AppThemes.c03346E,
+                                Container(
+                                  margin: const EdgeInsets.only(top: 300),
+                                  child: Obx((){
+                                    if(controller.isLogoutLoading.value == true){
+                                      return Row(
+                                        mainAxisAlignment: MainAxisAlignment.center,
+                                        children: [
+                                          Container(
+                                            margin: const EdgeInsets.only(right: 40),
+                                            child: const CircularProgressIndicator(
+                                              color: AppThemes.c03346E,
+                                            ),
                                           ),
-                                        ),
-                                        const Text('Logging you out...', style: TextStyle(
-                                            fontSize: 16
-                                        ))
-                                      ],
-                                    );
-                                  }else{
-                                    return GeneralButton(
-                                        minimumSize: const Size(double.infinity, 60),
-                                        // maximumSize: const Size(double.infinity, 40),
-                                        text: "Logout",
-                                        fontColor: AppThemes.c03346E,
-                                        buttonColor: AppThemes.c03346E,
-                                        callback: () {
-                                          Get.bottomSheet(
-                                              Container(
-                                                height: 200,
-                                                padding: const EdgeInsets.all(14),
-                                                decoration: const BoxDecoration(
-                                                  borderRadius: BorderRadius.only(
-                                                      topLeft: Radius.circular(10),
-                                                      topRight: Radius.circular(10)
-                                                  ),
-                                                  color: Colors.white,
-                                                ),
-                                                child: Column(
-                                                  children: [
-                                                    Container(
-                                                      margin: const EdgeInsets.only(bottom: 10),
-                                                      child: const Text(
-                                                          "Are you sure you want to Logout?",
-                                                          style: TextStyle(color: AppThemes.c021526, fontSize: 18, fontWeight: FontWeight.bold)
-                                                      ),
+                                          const Text('Logging you out...', style: TextStyle(
+                                              fontSize: 16
+                                          ))
+                                        ],
+                                      );
+                                    }else{
+                                      return GeneralButton(
+                                          minimumSize: const Size(double.infinity, 60),
+                                          // maximumSize: const Size(double.infinity, 40),
+                                          text: "Logout",
+                                          fontColor: AppThemes.c03346E,
+                                          buttonColor: AppThemes.c03346E,
+                                          callback: () {
+                                            Get.bottomSheet(
+                                                Container(
+                                                  height: 200,
+                                                  padding: const EdgeInsets.all(14),
+                                                  decoration: const BoxDecoration(
+                                                    borderRadius: BorderRadius.only(
+                                                        topLeft: Radius.circular(10),
+                                                        topRight: Radius.circular(10)
                                                     ),
+                                                    color: Colors.white,
+                                                  ),
+                                                  child: Column(
+                                                    children: [
+                                                      Container(
+                                                        margin: const EdgeInsets.only(bottom: 10),
+                                                        child: const Text(
+                                                            "Are you sure you want to Logout?",
+                                                            style: TextStyle(color: AppThemes.c021526, fontSize: 18, fontWeight: FontWeight.bold)
+                                                        ),
+                                                      ),
 
-                                                    Row(
-                                                      mainAxisAlignment: MainAxisAlignment.center,
-                                                      children: [
-                                                        Padding(
-                                                          padding: const EdgeInsets.all(8.0),
-                                                          child: Container(
+                                                      Row(
+                                                        mainAxisAlignment: MainAxisAlignment.center,
+                                                        children: [
+                                                          Padding(
+                                                            padding: const EdgeInsets.all(8.0),
+                                                            child: Container(
+                                                              child: GeneralButton(
+                                                                  minimumSize: const Size(140, 60),
+                                                                  // maximumSize: const Size(double.infinity, 40),
+                                                                  text: "Yes, Logout",
+                                                                  fontColor: AppThemes.c03346E,
+                                                                  buttonColor: AppThemes.c03346E,
+                                                                  callback: () async {
+                                                                    Get.back();
+                                                                    await controller.logout();
+                                                                  }
+                                                              ),
+                                                            ),
+                                                          ),
+
+                                                          Padding(
+                                                            padding: const EdgeInsets.all(8.0),
                                                             child: GeneralButton(
                                                                 minimumSize: const Size(140, 60),
                                                                 // maximumSize: const Size(double.infinity, 40),
-                                                                text: "Yes, Logout",
+                                                                text: "Cancel",
                                                                 fontColor: AppThemes.c03346E,
                                                                 buttonColor: AppThemes.c03346E,
-                                                                callback: () async {
+                                                                callback: (){
                                                                   Get.back();
-                                                                  await controller.logout();
                                                                 }
                                                             ),
                                                           ),
-                                                        ),
-
-                                                        Padding(
-                                                          padding: const EdgeInsets.all(8.0),
-                                                          child: GeneralButton(
-                                                              minimumSize: const Size(140, 60),
-                                                              // maximumSize: const Size(double.infinity, 40),
-                                                              text: "Cancel",
-                                                              fontColor: AppThemes.c03346E,
-                                                              buttonColor: AppThemes.c03346E,
-                                                              callback: (){
-                                                                Get.back();
-                                                              }
-                                                          ),
-                                                        ),
-                                                      ],
-                                                    )
-                                                  ],
-                                                ),
-                                              )
-                                          );
-                                        }
-                                    );
+                                                        ],
+                                                      )
+                                                    ],
+                                                  ),
+                                                )
+                                            );
+                                          }
+                                      );
+                                    }
                                   }
-                                }
+                                  ),
                                 )
                               ],
                             ),

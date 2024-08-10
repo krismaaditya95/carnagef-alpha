@@ -15,7 +15,8 @@ class MovieDetailPage extends GetView<MovieDetailController> {
   @override
   Widget build(BuildContext context) {
 
-    controller.getMovieDetail(movieId: Get.arguments);
+    var movieIdArgument = Get.arguments;
+    controller.getMovieDetail(movieId: movieIdArgument);
 
     return Scaffold(
       appBar: AppBar(
@@ -29,7 +30,7 @@ class MovieDetailPage extends GetView<MovieDetailController> {
                   child: RefreshIndicator(
                     displacement: 8.0,
                     onRefresh: () async {
-                      controller.getMovieDetail();
+                      controller.getMovieDetail(movieId: movieIdArgument);
                     },
                     child: Container(
                       height: double.infinity,

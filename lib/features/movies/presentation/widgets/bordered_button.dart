@@ -6,21 +6,27 @@ class BorderedButton extends StatelessWidget {
   final String? text;
   final IconData? icon;
   final Function() callback;
+  final Color borderColor;
+  final Color textColor;
+  final Color? backgroundColor;
 
   const BorderedButton({
     super.key,
     this.text = "button",
     required this.icon,
-    required this.callback
+    required this.callback,
+    this.borderColor = AppThemes.cE2E2B6,
+    this.textColor = AppThemes.cE2E2B6,
+    this.backgroundColor
   });
 
   @override
   Widget build(BuildContext context) {
     return OutlinedButton(
       style: OutlinedButton.styleFrom(
-        foregroundColor: AppThemes.cE2E2B6,
-        // backgroundColor: AppThemes.c021526,
-        side: const BorderSide(color: AppThemes.cE2E2B6),
+        foregroundColor: textColor,
+        backgroundColor: backgroundColor,
+        side: BorderSide(color: borderColor),
         alignment: Alignment.center,
         padding: const EdgeInsets.only(left: 4, right: 4),
       ),
