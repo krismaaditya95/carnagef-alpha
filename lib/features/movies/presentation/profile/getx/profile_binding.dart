@@ -1,15 +1,3 @@
-import 'package:carnagef_alpha/features/movies/data/data_sources/remote/personal/personal_service.dart';
-import 'package:carnagef_alpha/features/movies/data/data_sources/remote/personal/personal_service_impl.dart';
-import 'package:carnagef_alpha/features/movies/data/repository/personal_repository_impl.dart';
-import 'package:carnagef_alpha/features/movies/domain/repository/authentication/authentication_repository.dart';
-import 'package:carnagef_alpha/features/movies/domain/repository/personal_repository.dart';
-import 'package:carnagef_alpha/features/movies/domain/usecases/authentication/authentication_check_usecase.dart';
-import 'package:carnagef_alpha/features/movies/domain/usecases/authentication/delete_authentication_data_usecase.dart';
-import 'package:carnagef_alpha/features/movies/domain/usecases/authentication/logout_usecase.dart';
-import 'package:carnagef_alpha/features/movies/domain/usecases/favorite_movies_usecase.dart';
-import 'package:carnagef_alpha/features/movies/domain/usecases/watchlist_movies_usecase.dart';
-import 'package:carnagef_alpha/features/movies/presentation/profile/getx/profile_controller.dart';
-import 'package:dio/dio.dart';
 import 'package:get/get.dart';
 
 class ProfileBinding extends Bindings{

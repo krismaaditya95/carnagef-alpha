@@ -12,8 +12,6 @@ import 'package:carnagef_alpha/features/movies/presentation/popular/getx/popular
 import 'package:carnagef_alpha/features/movies/presentation/popular/pages/popular_page.dart';
 import 'package:carnagef_alpha/features/movies/presentation/profile/getx/profile_binding.dart';
 import 'package:carnagef_alpha/features/movies/presentation/profile/pages/profile_page.dart';
-import 'package:carnagef_alpha/features/movies/presentation/similar_movies/getx/similar_movie_binding.dart';
-import 'package:carnagef_alpha/features/movies/presentation/similar_movies/pages/similar_movie_page.dart';
 import 'package:carnagef_alpha/features/movies/presentation/splash_screen/getx/splash_binding.dart';
 import 'package:carnagef_alpha/features/movies/presentation/splash_screen/pages/splash_screen_page.dart';
 import 'package:carnagef_alpha/features/movies/presentation/watchlist_movies/getx/watchlist_movies_binding.dart';

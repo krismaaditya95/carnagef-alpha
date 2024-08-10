@@ -1,13 +1,9 @@
-import 'package:carnagef_alpha/features/movies/data/data_sources/remote/authentication/authentication_service.dart';
-import 'package:carnagef_alpha/features/movies/data/data_sources/remote/authentication/authentication_service_impl.dart';
 import 'package:carnagef_alpha/features/movies/data/data_sources/remote/personal/personal_service.dart';
 import 'package:carnagef_alpha/features/movies/data/data_sources/remote/personal/personal_service_impl.dart';
-import 'package:carnagef_alpha/features/movies/data/repository/authentication/authentication_repository_impl.dart';
 import 'package:carnagef_alpha/features/movies/data/repository/personal_repository_impl.dart';
 import 'package:carnagef_alpha/features/movies/domain/repository/authentication/authentication_repository.dart';
 import 'package:carnagef_alpha/features/movies/domain/repository/personal_repository.dart';
 import 'package:carnagef_alpha/features/movies/domain/usecases/authentication/authentication_check_usecase.dart';
-import 'package:carnagef_alpha/features/movies/domain/usecases/authentication/create_request_token_usecase.dart';
 import 'package:carnagef_alpha/features/movies/domain/usecases/authentication/delete_authentication_data_usecase.dart';
 import 'package:carnagef_alpha/features/movies/domain/usecases/authentication/logout_usecase.dart';
 import 'package:carnagef_alpha/features/movies/domain/usecases/favorite_movies_usecase.dart';

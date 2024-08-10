@@ -1,6 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carnagef_alpha/config/theme/app_themes.dart';
-import 'package:carnagef_alpha/core/constants/assets.dart';
 import 'package:carnagef_alpha/features/movies/presentation/favorite_movies/pages/favorite_movies_page.dart';
 import 'package:carnagef_alpha/features/movies/presentation/movie_detail/pages/movie_detail_page.dart';
 import 'package:carnagef_alpha/features/movies/presentation/profile/getx/profile_controller.dart';
