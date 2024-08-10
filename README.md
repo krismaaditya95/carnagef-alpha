@@ -1,6 +1,6 @@
 # carnagef_alpha
 
-A new personal Flutter project by sn1ster aka Albertus Krisma Aditya Giovanni
+A new personal Flutter project by Albertus Krisma Aditya Giovanni
 Repository untuk soal Flutter Developer ENTERKOMPUTER
 
 FLUTTER
@@ -17,8 +17,9 @@ FITUR
 - My favorite movies
 - Download image to gallery/local storage
 
-HOW TO RUN
-flutter run -t lib/main_dev.dart --flavor dev
+HOW TO RUN : flutter run -t lib/main_dev.dart --flavor dev
+
+BUILD APK : flutter build apk -t lib/main_dev.dart --flavor dev
 
 TTD.
 Albertus Krisma Aditya Giovanni
