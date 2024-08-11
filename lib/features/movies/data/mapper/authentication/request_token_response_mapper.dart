@@ -8,6 +8,8 @@ class RequestTokenResponseMapper {
   static RequestTokenResponseEntity toEntity(RequestTokenResponseModel model) => RequestTokenResponseEntity(
       success: model.success,
       expiresAt: model.expiresAt,
-      requestToken: model.requestToken
+      requestToken: model.requestToken,
+      statusMessage: model.statusMessage,
+    statusCode: model.statusCode
   );
 }

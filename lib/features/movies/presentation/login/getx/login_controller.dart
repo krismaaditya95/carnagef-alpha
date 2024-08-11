@@ -137,6 +137,16 @@ class LoginController extends GetxController{
             debugPrint('LoginController => createNewSessionResult|onERROR: $error');
           });
           // =========== END OF CREATE NEW SESSION ===============
+        }else{
+          loginResponseResult(DataWrapper.error(response.success.toString(), "Failed"));
+          debugPrint('LoginController => loginResponseResult|STATUS_CODE: ${response.statusCode}');
+          debugPrint('LoginController => loginResponseResult|STATUS_MESSAGE: ${response.statusMessage}');
+
+          Get.snackbar('Login Gagal!', '${response.statusMessage}',
+              snackPosition: SnackPosition.BOTTOM,
+              duration: const Duration(seconds: 3),
+              colorText: Colors.white
+          );
         }
       }, onError: (error){
         debugPrint('LoginController => loginResponseResult|onERROR: $error');

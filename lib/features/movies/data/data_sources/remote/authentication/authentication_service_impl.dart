@@ -51,7 +51,14 @@ class AuthenticationServiceImpl implements AuthenticationService{
 
     final httpResponse = await _dio.post(
         ApiEndPoints.validateRequestTokenWithLogin,
-        options: Options(headers: headers),
+        options: Options(
+            headers: headers,
+            validateStatus: (value){
+              if(value == 401 || value == 200) {
+                return true;
+              }
+              return false;
+            }),
         data: {
           "username": userName,
           "password": passWord,
