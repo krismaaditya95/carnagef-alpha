@@ -13,6 +13,10 @@ import 'package:carnagef_alpha/features/movies/presentation/profile/getx/profile
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+/// [FavoriteMoviesController] is an GetxController for [FavoriteMoviesPage],
+/// It implements [StateMixin] provided by Getx to easily handling the UI
+/// The binding was delcared in [FavoriteMoviesBinding]
+/// -----------------------------------------------------------
 class FavoriteMoviesController extends GetxController with StateMixin<MoviesResponseEntity>{
   final title = "My Favorites";
 
@@ -36,14 +40,18 @@ class FavoriteMoviesController extends GetxController with StateMixin<MoviesResp
   late ProfileController profileController;
   var sortByState = 'created_at.asc'.obs;
 
+  /// Retrieve [MoviesResponseEntity] wrapped in [DataWrapper]
   final favoriteMoviesResponseResult = Rxn<DataWrapper<MoviesResponseEntity>>(DataWrapper.init());
   DataWrapper<MoviesResponseEntity>? get getFavoriteMoviesResponse => favoriteMoviesResponseResult.value;
   MoviesResponseEntity get favoriteMoviesResponseEntity => getFavoriteMoviesResponse!.data ?? const MoviesResponseEntity();
 
+  /// Retrieve [GeneralEntity] wrapped in [DataWrapper]
   final removeFavoriteResponseResult = Rxn<DataWrapper<GeneralEntity>>(DataWrapper.init());
   DataWrapper<GeneralEntity>? get getRemoveFavoriteResponse => removeFavoriteResponseResult.value;
   GeneralEntity get removeFavoriteEntity => getRemoveFavoriteResponse!.data ?? const GeneralEntity();
 
+  /// Function to fetch User's favorite movies
+  /// Given parameter [sortBy] default set by ['created_at.asc']
   Future<void> getFavoriteMovies({
     String? sortBy = 'created_at.asc'
   }) async {
@@ -79,6 +87,7 @@ class FavoriteMoviesController extends GetxController with StateMixin<MoviesResp
     isFavoriteLoading.value = false;
   }
 
+  /// Function to remove a movie from User's favorite movies by given [mediaId]
   Future<void> removeFromFavorite({
     dynamic mediaId,
     dynamic mediaTitle

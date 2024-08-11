@@ -13,6 +13,7 @@ import 'package:carnagef_alpha/features/movies/presentation/profile/getx/profile
 import 'package:dio/dio.dart';
 import 'package:get/get.dart';
 
+/// Bindings for [HomePage]
 class HomeBinding extends Bindings{
 
   @override

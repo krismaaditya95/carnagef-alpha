@@ -3,6 +3,11 @@ import 'package:carnagef_alpha/features/movies/data/data_sources/remote/now_play
 import 'package:carnagef_alpha/features/movies/data/models/movies_response_model.dart';
 import 'package:dio/dio.dart';
 
+/// implementation data source class of [NowPLayingService]
+/// we perform all http request related to Now Playing Movies API explained in TMDB API documentation
+///
+/// [getNowPLayingMovieList] => get now playing movies
+///
 class NowPlayingServiceImpl implements NowPLayingService{
 
   final Dio _dio;

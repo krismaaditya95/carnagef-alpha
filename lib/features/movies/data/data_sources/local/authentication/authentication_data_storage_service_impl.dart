@@ -3,6 +3,7 @@ import 'package:carnagef_alpha/core/constants/authentication_keys.dart';
 import 'package:carnagef_alpha/features/movies/data/data_sources/local/authentication/authentication_data_storage_service.dart';
 import 'package:carnagef_alpha/features/movies/data/data_sources/local/local_storage.dart';
 
+/// implementation class for [AuthenticationDataStorageService]
 class AuthenticationDataStorageServiceImpl implements AuthenticationDataStorageService{
 
   @override

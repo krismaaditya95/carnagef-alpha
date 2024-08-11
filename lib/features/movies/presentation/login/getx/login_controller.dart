@@ -11,9 +11,14 @@ import 'package:carnagef_alpha/features/movies/domain/usecases/authentication/cr
 import 'package:carnagef_alpha/features/movies/domain/usecases/authentication/login_usecase.dart';
 import 'package:carnagef_alpha/features/movies/domain/usecases/authentication/save_authentication_data_usecase.dart';
 import 'package:carnagef_alpha/features/movies/presentation/home/pages/home_page.dart';
+import 'package:carnagef_alpha/features/movies/presentation/login/getx/login_binding.dart';
+import 'package:carnagef_alpha/features/movies/presentation/login/pages/login_page.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+/// [LoginController] is an GetxController for [LoginPage],
+/// The binding was delcared in [LoginBinding]
+/// -----------------------------------------------------------
 class LoginController extends GetxController{
 
   final CreateRequestTokenUseCase _createRequestTokenUseCase;
@@ -50,15 +55,15 @@ class LoginController extends GetxController{
   DataWrapper<NewSessionResponseEntity>? get getNewSessionResponse => newSessionResponseResult.value;
   NewSessionResponseEntity get newSessionResponseEntity => getNewSessionResponse!.data ?? const NewSessionResponseEntity();
 
-
-
+  /// STEP 1 of login request
+  /// Request Token
   Future<String> createRequestToken() async {
-    // response example
-    // {
-    // "success":true,
-    // "expires_at":"2024-08-09 13:16:11 UTC",
-    // "request_token":"8ff17e492ddbe868aad4d6d79ce96299f1dc6ecb"
-    // }
+    /// response example
+    /// {
+    /// "success":true,
+    /// "expires_at":"2024-08-09 13:16:11 UTC",
+    /// "request_token":"8ff17e492ddbe868aad4d6d79ce96299f1dc6ecb"
+    /// }
     var requestToken = "";
     await _createRequestTokenUseCase.call(
         CreateRequestTokenParams(
@@ -79,6 +84,8 @@ class LoginController extends GetxController{
     return requestToken;
   }
 
+  /// STEP 2 of login request
+  /// Validating Request Token in step 1 by given User's username and password
   Future<void> loginUsernamePassword() async {
     isLoginLoading.value = true;
 
@@ -102,7 +109,8 @@ class LoginController extends GetxController{
           debugPrint('LoginController => loginResponseResult|REQUEST TOKEN: ${loginResponseEntity.requestToken}');
 
           // =========== CREATE NEW SESSION ======================
-
+          /// STEP 3 of login request
+          /// Validated Request Token used to create new session that returned a [sessionId]
           await _createSessionUseCase.call(CreateNewSessionParams(
               requestToken: requestToken,
               accessTokenAuth: accessTokenAuth
@@ -111,7 +119,7 @@ class LoginController extends GetxController{
               newSessionResponseResult(DataWrapper.success(response));
               debugPrint('LoginController => createNewSessionResult|SUCCESS: ${newSessionResponseEntity.success}');
               debugPrint('LoginController => createNewSessionResult|SESSION_ID: ${newSessionResponseEntity.sessionId}');
-              
+
               await _saveAuthenticationDataUseCase.call(SaveAuthenticationDataParams(
                 tokenExpireDate: loginResponseEntity.expiresAt,
                 requestToken: loginResponseEntity.requestToken,

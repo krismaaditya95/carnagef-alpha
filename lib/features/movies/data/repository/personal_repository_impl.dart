@@ -4,6 +4,9 @@ import 'package:carnagef_alpha/features/movies/data/mapper/movies_response_mappe
 import 'package:carnagef_alpha/features/movies/domain/entities/movies_response_entity.dart';
 import 'package:carnagef_alpha/features/movies/domain/repository/personal_repository.dart';
 
+/// implementation repository class of [PersonalRepository]
+/// Communicates with [PersonalService] and perform their member functions
+///
 class PersonalRepositoryImpl implements PersonalRepository{
 
   final PersonalService _personalService;

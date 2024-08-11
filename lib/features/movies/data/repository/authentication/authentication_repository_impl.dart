@@ -10,6 +10,9 @@ import 'package:carnagef_alpha/features/movies/domain/entities/authentication/re
 import 'package:carnagef_alpha/features/movies/domain/repository/authentication/authentication_repository.dart';
 import 'package:flutter/material.dart';
 
+/// implementation repository class of [AuthenticationRepository]
+/// Communicates with [AuthenticationService] and perform their member functions
+///
 class AuthenticationRepositoryImpl implements AuthenticationRepository{
 
   final AuthenticationService _authenticationService;

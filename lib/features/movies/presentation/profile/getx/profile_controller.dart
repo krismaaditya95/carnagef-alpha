@@ -13,11 +13,18 @@ import 'package:carnagef_alpha/features/movies/domain/usecases/authentication/de
 import 'package:carnagef_alpha/features/movies/domain/usecases/authentication/logout_usecase.dart';
 import 'package:carnagef_alpha/features/movies/domain/usecases/favorite_movies_usecase.dart';
 import 'package:carnagef_alpha/features/movies/domain/usecases/watchlist_movies_usecase.dart';
+import 'package:carnagef_alpha/features/movies/presentation/home/getx/home_binding.dart';
 import 'package:carnagef_alpha/features/movies/presentation/login/pages/login_page.dart';
+import 'package:carnagef_alpha/features/movies/presentation/profile/getx/profile_binding.dart';
+import 'package:carnagef_alpha/features/movies/presentation/profile/pages/profile_page.dart';
 import 'package:carousel_slider/carousel_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+/// [ProfileController] is an GetxController for [ProfilePage],
+/// It implements [StateMixin] provided by Getx to easily handling the UI
+/// The binding was declared in [ProfileBinding] => now moved to [HomeBinding]
+/// -----------------------------------------------------------
 class ProfileController extends GetxController with StateMixin<AccountDetailResponseEntity>{
   final title = "Profile";
 
@@ -54,21 +61,22 @@ class ProfileController extends GetxController with StateMixin<AccountDetailResp
   CarouselSliderController watchlistCarouselController = CarouselSliderController();
   CarouselSliderController favoriteCarouselController = CarouselSliderController();
 
-  // account detail
+  // Account detail
   final accountDetailResponseResult = Rxn<DataWrapper<AccountDetailResponseEntity>>(DataWrapper.init());
   DataWrapper<AccountDetailResponseEntity>? get getAccountDetailResponse => accountDetailResponseResult.value;
   AccountDetailResponseEntity get accountDetailResponseEntity => getAccountDetailResponse!.data ?? const AccountDetailResponseEntity();
 
-  // watchlist
+  // Watchlist
   final watchlistMoviesResponseResult = Rxn<DataWrapper<MoviesResponseEntity>>(DataWrapper.init());
   DataWrapper<MoviesResponseEntity>? get getWatchlistMoviesResponse => watchlistMoviesResponseResult.value;
   MoviesResponseEntity get watchlistMoviesResponseEntity => getWatchlistMoviesResponse!.data ?? const MoviesResponseEntity();
 
-  // favorite
+  // Favorite
   final favoriteMoviesResponseResult = Rxn<DataWrapper<MoviesResponseEntity>>(DataWrapper.init());
   DataWrapper<MoviesResponseEntity>? get getFavoriteMoviesResponse => favoriteMoviesResponseResult.value;
   MoviesResponseEntity get favoriteMoviesResponseEntity => getFavoriteMoviesResponse!.data ?? const MoviesResponseEntity();
 
+  /// Fetch User's Account Detail
   Future<void> getAccountDetail() async {
     change(null, status: RxStatus.loading());
     final sessionId = await LocalStorage.getData(AuthenticationKeys.sessionId, defaultValue: '');
@@ -113,6 +121,7 @@ class ProfileController extends GetxController with StateMixin<AccountDetailResp
     }
   }
 
+  /// Fetch User's Watchlist Movies
   Future<void> getWatchlistMovies() async {
     isWatchlistLoading.value = true;
     final sessionId = await LocalStorage.getData(AuthenticationKeys.sessionId, defaultValue: '');
@@ -144,6 +153,7 @@ class ProfileController extends GetxController with StateMixin<AccountDetailResp
     isWatchlistLoading.value = false;
   }
 
+  /// Fetch User's Favorite Movies
   Future<void> getFavoriteMovies() async {
     isFavoriteLoading.value = true;
     final sessionId = await LocalStorage.getData(AuthenticationKeys.sessionId, defaultValue: '');
@@ -175,6 +185,9 @@ class ProfileController extends GetxController with StateMixin<AccountDetailResp
     isFavoriteLoading.value = false;
   }
 
+  /// Logout Function
+  /// It calls Delete API request to '/authentication/session'
+  /// And deletes stored key value data from Hive
   Future<void> logout() async {
     debugPrint('PROFILE Controller | Logging you out......');
     isLogoutLoading.value = true;

@@ -3,6 +3,12 @@ import 'package:carnagef_alpha/features/movies/data/models/params/general_movies
 import 'package:carnagef_alpha/features/movies/domain/entities/movies_response_entity.dart';
 import 'package:carnagef_alpha/features/movies/domain/repository/similar_movie_repository.dart';
 
+/// USECASE Class is used to encapsulate the specific business logic for a given use case
+/// Each usecase contains only one specific task
+/// Here, [SimilarMovieUseCase] interact and coordinate with [SimilarMovieRepository],
+/// access its function [getSimilarMovie] and retrieve [MoviesResponseEntity]
+/// After that, this usecase imported and used in the Controller in the Presentation Layer
+/// -----------------------------------------------------------
 class SimilarMovieUseCase extends BaseUsecase<MoviesResponseEntity, GeneralMoviesParams>{
 
   final SimilarMovieRepository _similarMovieRepository;

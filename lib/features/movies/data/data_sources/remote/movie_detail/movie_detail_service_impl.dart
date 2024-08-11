@@ -6,6 +6,14 @@ import 'package:carnagef_alpha/features/movies/data/models/movie_detail_model.da
 import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
 
+/// implementation data source class of [MovieDetailService]
+/// we perform all http request related to Movie Detail API explained in TMDB API documentation
+///
+/// [getMovieDetail] => get movie detail
+/// [downloadImage] => for downloading image , in this case, downloading an poster image
+/// [addToWatchlist] => to add a movie to user's watchlist
+/// [addToFavorite] => to add a movie to user's favorite
+///
 class MovieDetailServiceImpl implements MovieDetailService{
 
   final Dio _dio;
@@ -48,7 +56,7 @@ class MovieDetailServiceImpl implements MovieDetailService{
   @override
   Future downloadImage({ProgressCallback? progress, String? imageUrl}) async {
 
-    // final Directory? downloadDirectory = await getDownloadsDirectory();
+    /// Set download directory path to Download Folder on our internal storage
     final Directory downloadDirectory = Directory('/storage/emulated/0/Download');
     final String fullPath = downloadDirectory.path;
 
@@ -64,6 +72,9 @@ class MovieDetailServiceImpl implements MovieDetailService{
     //     deleteOnError: true
     // );
 
+    /// accept parameter ProgressCallback function
+    /// dio download tells our given function callback
+    /// to control the download progress in our view's controller
     await _dio.download(
         'https://image.tmdb.org/t/p/original$imageUrl',
         fullPath + imageUrl.toString(),

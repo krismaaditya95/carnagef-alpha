@@ -16,6 +16,8 @@ import 'package:carnagef_alpha/features/movies/domain/usecases/authentication/sa
 import 'package:dio/dio.dart';
 import 'package:get/get.dart';
 
+/// Main Binding Class for GetX dependency injections
+/// I put all the crucial / important and necessary data sources, repositories, and usecases here
 class AppBindings extends Bindings{
   @override
   Future<void> dependencies() async {

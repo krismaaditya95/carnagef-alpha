@@ -3,6 +3,12 @@ import 'package:carnagef_alpha/features/movies/data/data_sources/remote/similar_
 import 'package:carnagef_alpha/features/movies/data/models/movies_response_model.dart';
 import 'package:dio/dio.dart';
 
+/// implementation data source class of [SimilarMovieService]
+/// we perform all http request related to Similar Movie based
+/// on [movieId] on Movie Detail, that explained in TMDB API documentation
+///
+/// [getSimilarMovie] => get similar movies based on given [movieId]
+///
 class SimilarMovieServiceImpl implements SimilarMovieService{
 
   final Dio _dio;
@@ -32,8 +38,6 @@ class SimilarMovieServiceImpl implements SimilarMovieService{
         options: Options(headers: headers),
         queryParameters: params
     );
-
-    // debugPrint("NOW PLAYING SERVICE LOG = ${jsonEncode(httpResponse.data)}");
 
     return MoviesResponseModel.fromJson(httpResponse.data, httpResponse.statusMessage, httpResponse.statusCode);
   }

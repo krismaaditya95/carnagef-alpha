@@ -3,6 +3,11 @@ import 'package:carnagef_alpha/features/movies/data/data_sources/remote/popular/
 import 'package:carnagef_alpha/features/movies/data/models/movies_response_model.dart';
 import 'package:dio/dio.dart';
 
+/// implementation data source class of [PopularService]
+/// we perform all http request related to Popular Movies explained in TMDB API documentation
+///
+/// [getPopularMovies] => get popular movies
+///
 class PopularServiceImpl implements PopularService{
 
   final Dio _dio;

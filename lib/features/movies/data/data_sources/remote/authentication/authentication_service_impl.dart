@@ -7,6 +7,18 @@ import 'package:carnagef_alpha/features/movies/data/models/authentication/reques
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 
+/// implementation data source class of [AuthenticationService]
+/// we perform all http request related to Authentication steps explained in TMDB API documentation
+/// The Steps is :
+/// [createRequestToken] => for creating request token
+/// [validateRequestTokenWithLogin] => validating request token using User's TMDB username and password
+/// [createNewSession] => after that, create new session that returns [session_id]
+/// the returned [session_id] used for :
+/// retrieving account detail in [getAccountDetail]
+/// delete session in [deleteSession]
+/// and another api such ass add to watchlist , add to favorite in another services
+///
+
 class AuthenticationServiceImpl implements AuthenticationService{
 
   final Dio _dio;
@@ -20,8 +32,8 @@ class AuthenticationServiceImpl implements AuthenticationService{
     };
 
     final httpResponse = await _dio.get(
-        ApiEndPoints.createRequestToken,
-        options: Options(headers: headers),
+      ApiEndPoints.createRequestToken,
+      options: Options(headers: headers),
     );
 
     return RequestTokenResponseModel.fromJson(httpResponse.data);
@@ -38,13 +50,13 @@ class AuthenticationServiceImpl implements AuthenticationService{
     };
 
     final httpResponse = await _dio.post(
-      ApiEndPoints.validateRequestTokenWithLogin,
-      options: Options(headers: headers),
-      data: {
-        "username": userName,
-        "password": passWord,
-        "request_token": requestToken
-      }
+        ApiEndPoints.validateRequestTokenWithLogin,
+        options: Options(headers: headers),
+        data: {
+          "username": userName,
+          "password": passWord,
+          "request_token": requestToken
+        }
     );
 
     return RequestTokenResponseModel.fromJson(httpResponse.data);
@@ -103,17 +115,17 @@ class AuthenticationServiceImpl implements AuthenticationService{
     };
 
     final httpResponse = await _dio.get(
-      ApiEndPoints.accountDetail,
-      options: Options(
-          headers: headers,
-          validateStatus: (value){
-            if(value == 401 || value == 200) {
-              return true;
+        ApiEndPoints.accountDetail,
+        options: Options(
+            headers: headers,
+            validateStatus: (value){
+              if(value == 401 || value == 200) {
+                return true;
+              }
+              return false;
             }
-            return false;
-          }
-      ),
-      queryParameters: params
+        ),
+        queryParameters: params
     );
 
     debugPrint('AUTHENTICATION SERVICE | HTTP_RESPONSE: ==> \n'

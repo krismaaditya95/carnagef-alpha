@@ -5,9 +5,15 @@ import 'package:carnagef_alpha/features/movies/data/models/movies_response_model
 import 'package:carnagef_alpha/features/movies/data/models/params/general_movies_params.dart';
 import 'package:carnagef_alpha/features/movies/domain/entities/movies_response_entity.dart';
 import 'package:carnagef_alpha/features/movies/domain/usecases/now_playing_usecase.dart';
+import 'package:carnagef_alpha/features/movies/presentation/now_playing/getx/now_playing_binding.dart';
+import 'package:carnagef_alpha/features/movies/presentation/now_playing/pages/now_playing_page.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+/// [NowPlayingController] is an GetxController for [NowPlayingPage],
+/// It implements [StateMixin] provided by Getx to easily handling the UI
+/// The binding was declared in [NowPlayingBinding]
+/// -----------------------------------------------------------
 class NowPlayingController extends GetxController with StateMixin<MoviesResponseEntity>{
   final title = "Now Playing";
 
@@ -26,6 +32,7 @@ class NowPlayingController extends GetxController with StateMixin<MoviesResponse
   DataWrapper<MoviesResponseEntity>? get getNowPlayingResponse => nowPlayingResponseResult.value;
   MoviesResponseEntity get moviesResponseEntity => getNowPlayingResponse!.data ?? const MoviesResponseEntity();
 
+  /// Fetch Now Playing Movies
   void getNowPlayingMovies() async{
 
     change(null, status: RxStatus.loading());

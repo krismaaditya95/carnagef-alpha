@@ -3,6 +3,9 @@ import 'package:carnagef_alpha/features/movies/data/mapper/movies_response_mappe
 import 'package:carnagef_alpha/features/movies/domain/entities/movies_response_entity.dart';
 import 'package:carnagef_alpha/features/movies/domain/repository/now_playing_movie_repository.dart';
 
+/// implementation repository class of [NowPlayingMovieRepository]
+/// Communicates with [NowPLayingService] and perform their member functions
+///
 class NowPlayingMovieRepositoryImpl implements NowPlayingMovieRepository{
 
   final NowPLayingService _nowPLayingService;

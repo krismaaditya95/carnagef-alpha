@@ -3,6 +3,7 @@ import 'package:carnagef_alpha/features/movies/domain/usecases/favorite_movies_u
 import 'package:carnagef_alpha/features/movies/presentation/favorite_movies/getx/favorite_movies_controller.dart';
 import 'package:get/get.dart';
 
+/// Bindings for [FavoriteMovies]
 class FavoriteMoviesBinding extends Bindings{
   @override
   void dependencies() {

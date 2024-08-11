@@ -10,9 +10,15 @@ import 'package:carnagef_alpha/features/movies/domain/usecases/add_to_watchlist_
 import 'package:carnagef_alpha/features/movies/domain/usecases/watchlist_movies_usecase.dart';
 import 'package:carnagef_alpha/features/movies/presentation/login/pages/login_page.dart';
 import 'package:carnagef_alpha/features/movies/presentation/profile/getx/profile_controller.dart';
+import 'package:carnagef_alpha/features/movies/presentation/watchlist_movies/getx/watchlist_movies_binding.dart';
+import 'package:carnagef_alpha/features/movies/presentation/watchlist_movies/pages/watchlist_movies_page.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+/// [WatchlistMoviesController] is an GetxController for [WatchlistMoviesPage],
+/// It implements [StateMixin] provided by Getx to easily handling the UI
+/// The binding was declared in [WatchlistMoviesBinding]
+/// -----------------------------------------------------------
 class WatchlistMoviesController extends GetxController with StateMixin<MoviesResponseEntity>{
   final title = "My Watchlist";
 
@@ -44,6 +50,8 @@ class WatchlistMoviesController extends GetxController with StateMixin<MoviesRes
   DataWrapper<GeneralEntity>? get getRemoveWatchlistResponse => removeWatchlistResponseResult.value;
   GeneralEntity get removeWatchlistEntity => getRemoveWatchlistResponse!.data ?? const GeneralEntity();
 
+  /// Function to fetch User's Watchlist movies
+  /// Given parameter [sortBy] default set by ['created_at.asc']
   Future<void> getWatchlistMovies({
     String? sortBy = 'created_at.asc'
   }) async {
@@ -79,6 +87,7 @@ class WatchlistMoviesController extends GetxController with StateMixin<MoviesRes
     isWatchlistLoading.value = false;
   }
 
+  /// Function to remove a movie from User's Watchlist movies by given [mediaId]
   Future<void> removeFromWatchlist({
     dynamic mediaId,
     dynamic mediaTitle

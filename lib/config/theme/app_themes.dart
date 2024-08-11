@@ -4,6 +4,7 @@ import 'package:google_fonts/google_fonts.dart';
 
 class AppThemes{
 
+  /// Main color pallete
   static const c021526 = Color(0xFF021526);
   static const c03346E = Color(0xFF03346E);
   static const c6EACDA = Color(0xFF6EACDA);
@@ -11,6 +12,7 @@ class AppThemes{
 
   static const black252525 = Color(0xFF272727);
 
+  /// Override defaultTheme
   static ThemeData defaultTheme(BuildContext context){
 
     var baseTheme = ThemeData(

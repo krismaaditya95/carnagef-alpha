@@ -18,6 +18,8 @@ import 'package:carnagef_alpha/features/movies/presentation/watchlist_movies/get
 import 'package:carnagef_alpha/features/movies/presentation/watchlist_movies/pages/watchlist_movies_page.dart';
 import 'package:get/get.dart';
 
+/// This [initialPageRoute] is first or inital route that flutter
+/// GetMaterialApp called once the native splash finished
 const initialPageRoute = SplashScreenPage.routeName;
 
 final GetPage splashScreenPage = GetPage(
@@ -26,6 +28,7 @@ final GetPage splashScreenPage = GetPage(
     binding: SplashBinding()
 );
 
+/// list of Pages with its route name and bindings
 final pageRoutes = [
   splashScreenPage,
 

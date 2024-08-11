@@ -1,6 +1,8 @@
 
 enum Status { loading, success, error, init }
 
+/// this class work as a scaffold for our received data
+/// via repositories
 class DataWrapper<T>{
   T? data;
   Status? status;

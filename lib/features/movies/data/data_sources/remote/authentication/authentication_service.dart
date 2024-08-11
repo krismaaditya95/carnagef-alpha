@@ -4,6 +4,7 @@ import 'package:carnagef_alpha/features/movies/data/models/authentication/delete
 import 'package:carnagef_alpha/features/movies/data/models/authentication/new_session_response_model.dart';
 import 'package:carnagef_alpha/features/movies/data/models/authentication/request_token_response_model.dart';
 
+/// abstract class for REMOTE data source layer : Authentication
 abstract class AuthenticationService{
 
   Future<RequestTokenResponseModel> createRequestToken({

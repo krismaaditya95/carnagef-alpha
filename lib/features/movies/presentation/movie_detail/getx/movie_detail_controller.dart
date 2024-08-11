@@ -11,12 +11,18 @@ import 'package:carnagef_alpha/features/movies/domain/usecases/add_to_favorite_u
 import 'package:carnagef_alpha/features/movies/domain/usecases/add_to_watchlist_usecase.dart';
 import 'package:carnagef_alpha/features/movies/domain/usecases/download_usecase.dart';
 import 'package:carnagef_alpha/features/movies/domain/usecases/movie_detail_usecase.dart';
+import 'package:carnagef_alpha/features/movies/presentation/movie_detail/getx/movie_detail_binding.dart';
+import 'package:carnagef_alpha/features/movies/presentation/movie_detail/pages/movie_detail_page.dart';
 import 'package:carnagef_alpha/features/movies/presentation/profile/getx/profile_controller.dart';
 import 'package:device_info_plus/device_info_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:permission_handler/permission_handler.dart';
 
+/// [MovieDetailController] is an GetxController for [MovieDetailPage],
+/// It implements [StateMixin] provided by Getx to easily handling the UI
+/// The binding was declared in [MovieDetailBinding]
+/// -----------------------------------------------------------
 class MovieDetailController extends GetxController with StateMixin<MovieDetailEntity>{
 
   final MovieDetailUseCase _movieDetailUseCase;
@@ -34,6 +40,7 @@ class MovieDetailController extends GetxController with StateMixin<MovieDetailEn
         _addToWatchlistUseCase = addToWatchlistUseCase,
         _addToFavoriteUseCase = addToFavoriteUseCase;
 
+  /// Get Argument passed that contains a [movieId]
   dynamic arguments = Get.arguments;
 
   @override
@@ -58,6 +65,7 @@ class MovieDetailController extends GetxController with StateMixin<MovieDetailEn
   DataWrapper<GeneralEntity>? get getAddToFavoriteResponse => addToFavoriteResponseResult.value;
   GeneralEntity get favoriteEntity => getAddToFavoriteResponse!.data ?? const GeneralEntity();
 
+  /// Fetch movie detail by given [movieId]
   void getMovieDetail({
     dynamic movieId
   }) async {
@@ -83,6 +91,7 @@ class MovieDetailController extends GetxController with StateMixin<MovieDetailEn
     });
   }
 
+  /// Add a movie to user's watchlist by given [mediaId]
   Future<void> addToWatchlist({
     dynamic mediaId,
     dynamic mediaTitle
@@ -119,6 +128,7 @@ class MovieDetailController extends GetxController with StateMixin<MovieDetailEn
     isWatchlistLoading.value = false;
   }
 
+  /// Add a movie to user's favorite by given [mediaId]
   Future<void> addToFavorite({
     dynamic mediaId,
     dynamic mediaTitle
@@ -155,6 +165,7 @@ class MovieDetailController extends GetxController with StateMixin<MovieDetailEn
     isFavoriteLoading.value = false;
   }
 
+  /// Ask user for a Storage Permission
   Future<bool> checkStoragePermission() async {
     AndroidDeviceInfo deviceInfo = await DeviceInfoPlugin().androidInfo;
 
@@ -190,6 +201,8 @@ class MovieDetailController extends GetxController with StateMixin<MovieDetailEn
 
   }
 
+  /// Voidcallback function passed to [downloadImage], [DownloadUseCase.download]
+  /// to listen to the progress of image download that executed by [Dio.download] in the background
   void listenToDownload(int received, int total) async {
     var percentage = (received / total * 100);
 
@@ -208,6 +221,7 @@ class MovieDetailController extends GetxController with StateMixin<MovieDetailEn
   void downloadImage({
     dynamic imageUrl
   }) async {
+    /// If approved, then it continues to [downloadImage], otherwise it wont download
     if(await checkStoragePermission()){
 
       await _downloadUseCase.download(listenToDownload, imageUrl);

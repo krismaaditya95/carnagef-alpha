@@ -3,6 +3,13 @@ import 'package:carnagef_alpha/features/movies/data/data_sources/remote/personal
 import 'package:carnagef_alpha/features/movies/data/models/movies_response_model.dart';
 import 'package:dio/dio.dart';
 
+/// implementation data source class of [PersonalService]
+/// we perform all http request related to User's personal movies
+/// such ass Watchlist and Favorite that explained in TMDB API documentation
+///
+/// [getWatchlistMovies] => get user's watchlist movies
+/// [getFavoriteMovies] => get user's favorite movies
+///
 class PersonalServiceImpl implements PersonalService{
 
   final Dio _dio;

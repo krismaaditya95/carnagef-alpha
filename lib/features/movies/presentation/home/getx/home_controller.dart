@@ -3,6 +3,9 @@ import 'package:carnagef_alpha/features/movies/presentation/widgets/custom_botto
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+/// [HomeController] is an GetxController for [HomePage],
+/// All the necessary bindings was declared in [HomeBinding]
+/// -----------------------------------------------------------
 class HomeController extends GetxController with GetTickerProviderStateMixin{
 
   final title = "Home";

@@ -6,6 +6,9 @@ import 'package:carnagef_alpha/features/movies/domain/entities/movie_detail_enti
 import 'package:carnagef_alpha/features/movies/domain/repository/movie_detail_repository.dart';
 import 'package:dio/dio.dart';
 
+/// implementation repository class of [MovieDetailRepository]
+/// Communicates with [MovieDetailService] and perform their member functions
+///
 class MovieDetailRepositoryImpl implements MovieDetailRepository{
 
   final MovieDetailService _movieDetailService;

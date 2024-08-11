@@ -1,6 +1,9 @@
 import 'package:carnagef_alpha/features/movies/data/models/authentication/account_detail_response_model.dart';
 import 'package:carnagef_alpha/features/movies/domain/entities/authentication/account_detail_response_entity.dart';
 
+/// MAPPER Class that is used to map DTO / Model Class into Entity class
+/// [AccountDetailResponseMapper] is used to map [AccountDetailResponseModel] into [AccountDetailResponseEntity]
+/// -----------------------------------------------------------
 class AccountDetailResponseMapper {
   static AccountDetailResponseEntity toEntity(AccountDetailResponseModel? model) =>
       AccountDetailResponseEntity(

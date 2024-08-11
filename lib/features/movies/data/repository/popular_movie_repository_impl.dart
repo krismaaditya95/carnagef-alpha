@@ -4,6 +4,9 @@ import 'package:carnagef_alpha/features/movies/data/mapper/movies_response_mappe
 import 'package:carnagef_alpha/features/movies/domain/entities/movies_response_entity.dart';
 import 'package:carnagef_alpha/features/movies/domain/repository/popular_movie_repository.dart';
 
+/// implementation repository class of [PopularMovieRepository]
+/// Communicates with [PopularService] and perform their member functions
+///
 class PopularMovieRepositoryImpl implements PopularMovieRepository{
 
   final PopularService _popularService;

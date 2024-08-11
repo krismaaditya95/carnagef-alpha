@@ -1,6 +1,9 @@
 import 'package:carnagef_alpha/features/movies/data/models/movie_detail_model.dart';
 import 'package:carnagef_alpha/features/movies/domain/entities/movie_detail_entity.dart';
 
+/// MAPPER Class that is used to map DTO / Model Class into Entity class
+/// [MovieDetailResponseMapper] is used to map [MovieDetailModel] into [MovieDetailEntity]
+/// -----------------------------------------------------------
 class MovieDetailResponseMapper {
   static MovieDetailEntity toEntity(MovieDetailModel model) =>
       MovieDetailEntity(

@@ -2,6 +2,8 @@ import 'package:carnagef_alpha/core/constants/constants.dart';
 
 enum Environment { dev, sit, uat, prod}
 
+/// class for configure flavor / environment
+/// such ass base API endpoints, title, etc.
 abstract class AppEnvironment {
 
   static late Environment _environment;

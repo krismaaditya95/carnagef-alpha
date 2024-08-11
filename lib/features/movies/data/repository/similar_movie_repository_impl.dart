@@ -3,6 +3,9 @@ import 'package:carnagef_alpha/features/movies/data/mapper/movies_response_mappe
 import 'package:carnagef_alpha/features/movies/domain/entities/movies_response_entity.dart';
 import 'package:carnagef_alpha/features/movies/domain/repository/similar_movie_repository.dart';
 
+/// implementation repository class of [SimilarMovieRepository]
+/// Communicates with [SimilarMovieService] and perform their member functions
+///
 class SimilarMovieRepositoryImpl implements SimilarMovieRepository{
 
   final SimilarMovieService _similarMovieService;
