@@ -21,9 +21,9 @@ HOW TO RUN : flutter run -t lib/main_dev.dart --flavor dev
 
 BUILD APK : flutter build apk -t lib/main_dev.dart --flavor dev
 
-/// ==================================================================
-/// MIT License
-/// ==================================================================
+
+MIT License
+
 Copyright (c) 2024 Albertus Krisma Aditya Giovanni
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
